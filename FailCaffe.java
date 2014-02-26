@@ -1,3 +1,4 @@
+import java.util.EnumSet;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -11,10 +12,10 @@ public class FailCaffe
 		switch(part)
 		{
 			case ID12: randomNumb = rand.nextInt(12) + 1;
-						 break;
+					   break;
 							 
 			case ID8: randomNumb = rand.nextInt(8) + 1;
-						break;
+					  break;
 							
 			case ID4: randomNumb = rand.nextInt(4) + 1;
 				
@@ -22,12 +23,13 @@ public class FailCaffe
 		}
 		
 		//DEBUG INFO
-		//System.out.println("randomNumb: " + randomNumb);
-		//System.out.println("id: " + id);
+		//System.out.println("RANDOMNUMB: " + randomNumb);
+		//System.out.println("ID: " + id);
 		
 		return randomNumb;
 	}
 	
+	// Finds the smallest integer value within an integer array
 	private static int findSmallest(int[] array)
 	{
 		int smallest = array[0];
@@ -42,18 +44,37 @@ public class FailCaffe
 		
 		return smallest;
 	}
+	
+	// Sums all the the elemnts in an integer array
+	private int countPoints(int[] array)
+	{
+		int points = 0;
+		
+		for(int i = 0; i < array.length; i++)
+		{
+			points += array[i];
+		}
+		
+		return points;
+	}
 
 	public static void main(String args[])
 	{
 		final int trials = 3;
+		FailCaffe fc = new FailCaffe();
+		Dice dice = new Dice();
+		int value = -1;
 		
+		// Reads the number of players
 		System.out.print("Please enter the number of players: ");
 		Scanner scanner = new Scanner(System.in);
 		int numPlayers = scanner.nextInt();
+		
 		System.out.println("");
 		
-		Player players[] = new Player[numPlayers];
 		int[] points = new int[numPlayers];
+		
+		Player players[] = new Player[numPlayers];
 		
 		for(int i = 0; i < players.length; i++)
 		{
@@ -67,31 +88,94 @@ public class FailCaffe
 		
 		System.out.println("");
 		
-		FailCaffe fc = new FailCaffe();
-		
 		// For each player..
 		for(int i = 0; i < players.length; i++)
 		{
-			// For three times..
+			System.out.println("\nIt's " + players[i].name + "'s turn:");
+			
+			final EnumSet<Moka> dicesYetToRoll = Moka.VALID_DICES.clone();
+			
+			// For 'trials' times..
 			for(int j = 0; j < trials; j++)
 			{
+				System.out.println("Roll #" + (j + 1));
+				
 				// Roll each dice.
-				for(Moka dice : Moka.values())
+				for(Moka m : dicesYetToRoll)
 				{
-					players[i].points += fc.randInt(dice);
+					value = fc.randInt(m);
+					dice.values[m.ordinal()] = value;
+					System.out.println("- " + m + ": " + value); // Print the dice name and value
 				}
+				
+				try
+				{
+					Moka moka;
+						
+					if(dicesYetToRoll.size() >= 1)
+					{	
+						//DEBUG INFO
+						//System.out.println("j = " + j);
+						
+						if(j == (trials - 1))
+						{
+							//DEBUG INFO
+							//System.out.println("COUNTPOINTS(DICE.VALUES): " + fc.countPoints(dice.values));
+							
+							players[i].partialPoints += fc.countPoints(dice.values);
+							System.out.println("Partial result: " + players[i].partialPoints + " points.\n");
+							break;
+						}
+						
+						System.out.print("Which dice do you want to keep? {ID12, ID8, ID4, NONE}: ");
+						String next = scanner.next();
+						moka = Moka.valueOf(next);
+							
+						// Check if a dice is to be kept
+						if(!next.equalsIgnoreCase("NONE"))
+						{
+							dicesYetToRoll.remove(moka);
+						}
+							
+						players[i].partialPoints += dice.values[moka.ordinal()];
+						dice.values[moka.ordinal()] = 0;
+						
+						//DEBUG INFO
+						//System.out.println("PLAYERS[i].KEPTVALUES[0] " + players[i].keptValues[0]);
+						//System.out.println("DICESYETTOROLL.SIZE " + dicesYetToRoll.size());
+					}
+			 		
+					//DEBUG INFO
+					//System.out.println("DICESYETTOROLL: " + dicesYetToRoll);
+					
+					System.out.println("Partial result: " + players[i].partialPoints + " points.\n");
+					
+					//DEBUG INFO
+					//System.out.println("DICE.VALUES: " + dice.values[moka.ordinal()]);
+				}
+				catch(IllegalArgumentException e)
+				{
+					System.err.println("Invalid Dice. Aborting.");
+					System.exit(-1);
+				}
+			
+				//DEBUG INFO
+				//System.out.println("PLAYERS[i].NAME: " + players[i].name);
 			}
 			
-			points[i] = players[i].points;
-			
-			System.out.println(players[i].name + " totalized " + players[i].points + " points.");
+			points[i] = players[i].partialPoints;
 		}
-		
-		int largest = findSmallest(points);
 		
 		for(int i = 0; i < players.length; i++)
 		{
-			if(players[i].points == largest)
+			System.out.println(players[i].name + " totalized " + players[i].partialPoints + " points.");
+		}
+		
+		int smallest = findSmallest(points);
+		
+		for(int i = 0; i < players.length; i++)
+		{
+			if(players[i].partialPoints == smallest)
 			{
 				System.out.println("\n" + players[i].name + " lost. Coffee, pleeease!");
 				break;
@@ -100,13 +184,26 @@ public class FailCaffe
 	}
 }
 
+
 enum Moka
 {
-	ID12, ID8, ID4
+	ID12, ID8, ID4, NONE;
+	
+	public static final EnumSet<Moka> VALID_DICES = EnumSet.range(ID12, ID4);
+	
+	public static final EnumSet<Moka> DICES = EnumSet.allOf(Moka.class);
 }
+
+
+class Dice
+{
+	Moka moka;
+	int[] values = new int[Moka.values().length];
+}
+
 
 class Player
 {
-	int points;
+	int partialPoints;
 	String name;
 }
