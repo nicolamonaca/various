@@ -13,7 +13,7 @@
  *  
  *  SCREENSHOT: https://imageshack.com/i/nmbllfp
  *
- *  DOWNLOAD: https://db.tt/NQrNWliF
+ *  DOWNLOAD: https://db.tt/NQrNWliF (Requires Java installed on your machine: https://www.java.com/en/download/.)
  */ 
 
 
