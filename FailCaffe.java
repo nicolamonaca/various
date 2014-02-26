@@ -1,3 +1,22 @@
+/*  AUTHOR: Nicola Lamonaca
+ *
+ *  DATE: Feb. 26, 2014
+ *
+ *  DESCRIPTION: 'FailCaffè' is a game designed by Francesco "Ciccio" Granato.
+ *  The goal of 'FailCaffè' is to decide who, among n people, will brew coffee.
+ *  Each player has 3 dices: a tetrahedron (4 faces), an octahedron (8 faces) and a dodecahedron (12 faces) and 3 shots.
+ *  During each shot, the 3 dices are rolled and the player can choose which of the 3 dices to keep, eventually none.
+ *  When a dice is chosen, its value is added to the player's points and the dice cannot be kept again in the next roll.
+ *  The final player's score is given by the sum of all the kept dices' values.
+ *  In the final roll, all the remaining values are added to the player's points.
+ *  Dices names are {ID12, ID8, ID4, NONE}. If names are written in lowercase, a exception will be thrown.
+ *  
+ *  SCREENSHOT: https://imageshack.com/i/nmbllfp
+ *
+ *  DOWNLOAD: https://db.tt/NQrNWliF
+ */ 
+
+
 import java.util.EnumSet;
 import java.util.Random;
 import java.util.Scanner;
