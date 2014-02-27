@@ -48,7 +48,7 @@ public class FailCaffe
 		return randomNumb;
 	}
 	
-	// Finds the smallest integer value within an integer array
+	// Find the smallest integer value within an integer array
 	private static int findSmallest(int[] array)
 	{
 		int smallest = array[0];
@@ -64,7 +64,7 @@ public class FailCaffe
 		return smallest;
 	}
 	
-	// Sums all the the elemnts in an integer array
+	// Sum all the the elemnts in an integer array
 	private int countPoints(int[] array)
 	{
 		int points = 0;
@@ -84,7 +84,7 @@ public class FailCaffe
 		Dice dice = new Dice();
 		int value = -1;
 		
-		// Reads the number of players
+		// Read the number of players
 		System.out.print("Please enter the number of players: ");
 		Scanner scanner = new Scanner(System.in);
 		int numPlayers = scanner.nextInt();
