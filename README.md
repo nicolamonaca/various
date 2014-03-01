@@ -11,4 +11,4 @@ This repository stores various projects made just for fun.
 
 * #### FailCaffe.java
 
-    The implementation of a game designed by Francesco 'Ciccio' Granato
+    The implementation of a game designed by Francesco 'Ciccio' Granato.
