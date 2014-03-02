@@ -29,7 +29,7 @@ public class ArithmeticProgression
 		// the distance between the first two elements in the array, especially when the missing element
 		// would be in position array[1] or in aray[array.length - 2]; in fact, if we have the progression
 		// 1 _ 5 7 9 11, where the missing element is obviously 3, the algorithm would mistakenly think
-		// the step in the progression is 4, instead of 1.
+		// the step in the progression is 3, instead of 1.
 		// We find both steps values and take the minimum because if, by absurd, the bigger step would
 		// be the true step in the progression, we wouldn't have found a smaller step, like we did instead,
 		// so the smaller must be the true step.	
