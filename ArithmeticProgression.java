@@ -42,20 +42,20 @@ public class ArithmeticProgression
 		
 		boolean ascending = array[0] < array[1] ? true : false;
 		
+		if(debug)
+		{
+			System.out.println("");
+			System.out.println("(DEBUG) ASCENDING:   " + ascending);
+			System.out.println("(DEBUG) increment:   " + increment);
+			System.out.println("(DEBUG) firstStep:   " + firstStep);
+			System.out.println("(DEBUG) lastStep:    " + lastStep);
+			System.out.println("(DEBUG) minimumStep: " + minimumStep);
+			System.out.println("");
+		}
+		
 		//If it's an ascending order
 		if(ascending)
 		{
-			if(debug)
-			{
-				System.out.println("");
-				System.out.println("(DEBUG) ASCENDING:   " + ascending);
-				System.out.println("(DEBUG) increment:   " + increment);
-				System.out.println("(DEBUG) firstStep:   " + firstStep);
-				System.out.println("(DEBUG) lastStep:    " + lastStep);
-				System.out.println("(DEBUG) minimumStep: " + minimumStep);
-				System.out.println("");
-			}
-		
 			for(int i = 0; i < array.length - 1; i++)
 			{
 				if(array[i + 1] - array[i] != minimumStep + 1)
@@ -69,17 +69,6 @@ public class ArithmeticProgression
 		}
 		else
 		{
-			if(debug)
-			{
-				System.out.println("");
-				System.out.println("(DEBUG) ASCENDING:   " + ascending);
-				System.out.println("(DEBUG) increment:   " + increment);
-				System.out.println("(DEBUG) firstStep:   " + firstStep);
-				System.out.println("(DEBUG) lastStep:    " + lastStep);
-				System.out.println("(DEBUG) minimumStep: " + minimumStep);
-				System.out.println("");
-			}
-			
 			for(int i = 0; i < array.length - 1; i++)
 			{
 				if(array[i] - array[i + 1] != minimumStep + 1)
