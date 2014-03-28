@@ -85,67 +85,67 @@ public class ArithmeticProgression
 	}
 	
 	
-    public static void main(String args[]) throws Exception
-    {	
-    	ArithmeticProgression progression = new ArithmeticProgression();
+	public static void main(String args[]) throws Exception
+	{	
+		ArithmeticProgression progression = new ArithmeticProgression();
     	
-        System.out.print("How many numbers (N) do you want to insert? : ");
+		System.out.print("How many numbers (N) do you want to insert? : ");
         
-        Scanner scanner = new Scanner(System.in);
-        int N = scanner.nextInt();
+		Scanner scanner = new Scanner(System.in);
+		int N = scanner.nextInt();
         
-        while(N < 3 || N > 2500)
-        {
-            System.out.println("*** Please insert a value for N between 3 and 2500. ***\n");
-            System.out.print("How many numbers (N) do you want to insert? : ");
-            N = scanner.nextInt();
-        }
+		while(N < 3 || N > 2500)
+		{
+			System.out.println("*** Please insert a value for N between 3 and 2500. ***\n");
+			System.out.print("How many numbers (N) do you want to insert? : ");
+			N = scanner.nextInt();
+		}
         
-        int[] numbers = new int[N];
-        int tempNumber;
+		int[] numbers = new int[N];
+		int tempNumber;
         
-        for(int i = 1; i <= N; i++)
-        {
-            switch(i)
-            {
-                case 1: System.out.print("\nPlease enter the first number: ");
-                        break;
+		for(int i = 1; i <= N; i++)
+		{
+			switch(i)
+			{
+				case 1: System.out.print("\nPlease enter the first number: ");
+					break;
                 
-                case 2: System.out.print("Please enter the second number: ");
-                        break;
+                		case 2: System.out.print("Please enter the second number: ");
+                        		break;
                 
-                case 3: System.out.print("Please enter the third number: ");
-                        break;
+                		case 3: System.out.print("Please enter the third number: ");
+                        		break;
                 
-                default: System.out.print("Please enter the " + i + "th number: ");
+                		default: System.out.print("Please enter the " + i + "th number: ");
                         
-            }
+            		}
             
-            tempNumber = scanner.nextInt();
+            		tempNumber = scanner.nextInt();
             
-            // Only values in [-10^6, +10^6] are accepted
-            while(tempNumber < -Math.pow(10, 6) || tempNumber > Math.pow(10, 6))
-            {
-            	System.out.println("*** Please insert a value in [-10^6, +10^6]. ***\n");
-                System.out.print("Insert the number again : ");
-                tempNumber = scanner.nextInt();
-            }
+            		// Only values in [-10^6, +10^6] are accepted
+            		while(tempNumber < -Math.pow(10, 6) || tempNumber > Math.pow(10, 6))
+            		{
+            			System.out.println("*** Please insert a value in [-10^6, +10^6]. ***\n");
+                		System.out.print("Insert the number again : ");
+				tempNumber = scanner.nextInt();
+			}
             
-            numbers[i - 1] = tempNumber;
-        }
+        		numbers[i - 1] = tempNumber;
+        	}
         
-        System.out.println("");
-        progression.printAll(numbers);
+		System.out.println("");
+        	progression.printAll(numbers);
         
-        int missingNumber = progression.findMissingNumber(numbers, true);
+        	int missingNumber = progression.findMissingNumber(numbers, true);
         
-        if(missingNumber == missingNumberFlag)
-        {
+        	if(missingNumber == missingNumberFlag)
+        	{
 			System.out.println("The progression is well formed.");
-        }
-        else
-        {
-        	System.out.println("The missing number in the progression is: " + missingNumber);
-        }
-    }
+		}
+        	else
+        	{
+        		System.out.println("The missing number in the progression is: " + missingNumber);
+        	}
+    	}
 }
