@@ -20,7 +20,6 @@ public class Solution
 		// We find both steps values and take the minimum because if, by absurd, the bigger step would
 		// be the true step in the progression, we wouldn't have found a smaller step, like we did instead,
 		// so the smaller must be the true step.
-		
 		int missingNumber = missingNumberFlag;
 		int increment = array[0] < array[1]? 1 : -1;
 		
@@ -31,7 +30,6 @@ public class Solution
 		boolean ascending = array[0] < array[1] ? true : false;
 		
 		
-
 		//If it's an ascending order
 		if(ascending)
 		{
@@ -63,35 +61,35 @@ public class Solution
 		return missingNumber;
 	}
 	
-    public static void main(String args[]) throws Exception
-    {
-    	Solution progression = new Solution();
+    	public static void main(String args[]) throws Exception
+    	{
+    		Solution progression = new Solution();
     	
-        Scanner scanner = new Scanner(System.in);
-        int N = scanner.nextInt();
+        	Scanner scanner = new Scanner(System.in);
+        	int N = scanner.nextInt();
         
-        while(N < 3 || N > 2500)
-        {
-            System.err.print("*** Please insert a value for N between 3 and 2500. ***");
-            N = scanner.nextInt();
-        }
+        	while(N < 3 || N > 2500)
+        	{
+        	    	System.err.print("*** Please insert a value for N between 3 and 2500. ***");
+        	    	N = scanner.nextInt();
+        	}
         
-        int[] numbers = new int[N];
-        int tempNumber;
+        	int[] numbers = new int[N];
+        	int tempNumber;
         
-        for(int i = 1; i <= N; i++)
-        {
-            tempNumber = scanner.nextInt();
+        	for(int i = 1; i <= N; i++)
+        	{
+        	    	tempNumber = scanner.nextInt();
             
-         // Only values in [-10^6, +10^6] are accepted
-            while(tempNumber < -Math.pow(10, 6) || tempNumber > Math.pow(10, 6))
-            {
-                tempNumber = scanner.nextInt();
-            }
+         		// Only values in [-10^6, +10^6] are accepted
+            		while(tempNumber < -Math.pow(10, 6) || tempNumber > Math.pow(10, 6))
+            		{
+                		tempNumber = scanner.nextInt();
+            		}
             
-            numbers[i - 1] = tempNumber;
-        }
+            		numbers[i - 1] = tempNumber;
+        	}
         
-        System.out.println(progression.findMissingNumber(numbers));
-    }
+        	System.out.println(progression.findMissingNumber(numbers));
+    	}
 }
