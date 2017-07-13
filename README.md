@@ -1,8 +1,3 @@
-various
-=======
-
-This rep stores various exercises made just for fun
-=======
 # various
 
 This repository stores various projects made just for fun.
