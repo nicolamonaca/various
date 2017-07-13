@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 various
 =======
 
@@ -18,4 +17,3 @@ This repository stores various projects made just for fun.
 * #### FailCaffe.java
 
     The implementation of a game designed by Francesco 'Ciccio' Granato.
->>>>>>> 3536a42bbe4ca9ea3c76dc93f34e1d5300147b6a
